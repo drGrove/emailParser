@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a12" title="">
+  <file path="email.php" hash="bca092f934dd4600653385c80aad3013" package="EmailParser">
+    <docblock line="2">
+      <description>Basic Email Parser</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="EmailParser"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="14" package="Default">
+      <extends/>
+      <name>Email</name>
+      <full_name>\Email</full_name>
+      <docblock line="6">
+        <description>Extracts header and body from Raw Email following
+RFC 822
+http://www.w3.org/Protocols/rfc822/</description>
+        <long-description></long-description>
+        <tag line="6" name="version" description="V1.0"/>
+        <tag line="6" name="author" description="Daniel Grove"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="19" namespace="global" package="Default">
+        <name>$headers</name>
+        <default>array()</default>
+        <docblock line="15">
+          <description>Associative array of all Email headers</description>
+          <long-description></long-description>
+          <tag line="15" name="var" description="array" type="\associative">
+            <type by_reference="false">\associative</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="25" namespace="global" package="Default">
+        <name>$emailRawContent</name>
+        <default></default>
+        <docblock line="21">
+          <description>Raw email content</description>
+          <long-description></long-description>
+          <tag line="21" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="31" namespace="global" package="Default">
+        <name>$rawFields</name>
+        <default></default>
+        <docblock line="27">
+          <description>Associative array of headers</description>
+          <long-description></long-description>
+          <tag line="27" name="var" description="array" type="\associative">
+            <type by_reference="false">\associative</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="37" namespace="global" package="Default">
+        <name>$rawBodyLines</name>
+        <default></default>
+        <docblock line="33">
+          <description>Array of stings from the body of the email</description>
+          <long-description></long-description>
+          <tag line="33" name="var" description="of strings" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="44" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="39">
+          <description>Constructor
+Takes in a raw email and parses the headers and raw body</description>
+          <long-description></long-description>
+          <tag line="39" name="param" description="" type="string" variable="$emailStr">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="44">
+          <name>$emailStr</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="53" package="Default">
+        <name>getHeadersAndRawBody</name>
+        <full_name>getHeadersAndRawBody</full_name>
+        <docblock line="49">
+          <description>function to parse the headers and raw body from a raw email</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="83" package="Default">
+        <name>getTo</name>
+        <full_name>getTo</full_name>
+        <docblock line="78">
+          <description>Gets the To field (Receiver) from an Email if it exists</description>
+          <long-description></long-description>
+          <tag line="78" name="return" description="(in UTF-8 format)" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="78" name="throws" description="if a To header is not found" type="\Excption">
+            <type by_reference="false">\Excption</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="95" package="Default">
+        <name>getFrom</name>
+        <full_name>getFrom</full_name>
+        <docblock line="90">
+          <description>Gets the From field (Sender) from an Email if it exists</description>
+          <long-description></long-description>
+          <tag line="90" name="return" description="(in UTF-8 format)" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="90" name="throws" description="if a From header is not found" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="108" package="Default">
+        <name>getCc</name>
+        <full_name>getCc</full_name>
+        <docblock line="102">
+          <description>Gets list of email addresses that this email was also sent to.</description>
+          <long-description>&lt;p&gt;If any
+exist&lt;/p&gt;</long-description>
+          <tag line="102" name="returns" description="string (in UTF-8 format)"/>
+          <tag line="102" name="throws" description="if a CC header is not found" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="120" package="Default">
+        <name>getSubject</name>
+        <full_name>getSubject</full_name>
+        <docblock line="115">
+          <description>Gets the subject of the Email if one exists</description>
+          <long-description></long-description>
+          <tag line="115" name="return" description="(in UTF-8 format)" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="115" name="throws" description="if a Subject heaer is not found" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="132" package="Default">
+        <name>getDate</name>
+        <full_name>getDate</full_name>
+        <docblock line="127">
+          <description>Retrieves the Date and Time on which the email was sent</description>
+          <long-description></long-description>
+          <tag line="127" name="return" description="(in UTF-8 format)" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="127" name="throws" description="if a Date header is not found" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="143" package="Default">
+        <name>getBody</name>
+        <full_name>getBody</full_name>
+        <docblock line="139">
+          <description>Implodes array of rawBodyLines</description>
+          <long-description></long-description>
+          <tag line="139" name="return" description="UTF8 Encoded" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="152" package="Default">
+        <name>printEmail</name>
+        <full_name>printEmail</full_name>
+        <docblock line="147">
+          <description>Prints all of the relavant information from the email
+But only prints information that exists.</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="178" package="Default">
+        <name>isNewLine</name>
+        <full_name>isNewLine</full_name>
+        <docblock line="173">
+          <description>Checks for a new line</description>
+          <long-description></long-description>
+          <tag line="173" name="param" description="" type="string" variable="$line">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="173" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="178">
+          <name>$line</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="190" package="Default">
+        <name>isLineStartingWithPrintableChar</name>
+        <full_name>isLineStartingWithPrintableChar</full_name>
+        <docblock line="185">
+          <description>Checks that the line starts with a Printable Character</description>
+          <long-description></long-description>
+          <tag line="185" name="param" description="" type="string" variable="$line">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="185" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="190">
+          <name>$line</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="EmailParser" full_name="EmailParser"/>
+  <namespace name="global" full_name="global"/>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
